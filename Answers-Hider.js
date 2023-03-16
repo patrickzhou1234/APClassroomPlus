@@ -9,6 +9,8 @@
 // @grant        none
 // ==/UserScript==
 
+// press '`' to hide
+
 window.onkeydown = function(event) {
     if (event.keyCode=="192") {
         document.querySelectorAll("div.LearnosityDistractor.--valid").forEach(el => el.remove());
