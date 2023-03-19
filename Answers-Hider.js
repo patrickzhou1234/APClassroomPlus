@@ -9,11 +9,9 @@
 // @grant        none
 // ==/UserScript==
 
-// press '`' to hide
-
 window.onkeydown = function(event) {
     if (event.keyCode=="192") {
-        document.querySelectorAll("div.LearnosityDistractor.--valid").forEach(el => el.remove());
+        document.querySelectorAll("div.LearnosityDistractor").forEach(el => el.remove());
         document.querySelectorAll("div.icon.--correct").forEach(el => {
             el.style.display = "none";
             el.parentElement.parentElement.onclick = () => {
@@ -21,8 +19,18 @@ window.onkeydown = function(event) {
                 el.parentElement.parentElement.classList.add("--correct");
             }
         });
+        document.querySelectorAll("div.icon.--incorrect").forEach(el => {
+            el.style.display = "none";
+            el.parentElement.parentElement.onclick = () => {
+                el.style.display = "block";
+                el.parentElement.parentElement.classList.add("--incorrect");
+            }
+        });
         document.querySelectorAll("div.AccessibilityWrapper.mcq-option.--correct").forEach(el => {
             el.classList.remove("--correct");
+        });
+        document.querySelectorAll("div.AccessibilityWrapper.mcq-option.--incorrect").forEach(el => {
+            el.classList.remove("--incorrect");
         });
         document.querySelectorAll("div.letter.--chosen").forEach(el => el.classList.remove("--chosen"));
     }
