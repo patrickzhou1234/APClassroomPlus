@@ -4,7 +4,8 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
-// @match        https://apclassroom.collegeboard.org/*/assessments/results/*
+// @match        https://apstudents.collegeboard.org/*
+// @match        https://apclassroom.collegeboard.org/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=collegeboard.org
 // @grant        none
 // ==/UserScript==
