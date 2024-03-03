@@ -10,40 +10,40 @@
 // @grant        none
 // ==/UserScript==
 
-let showbool=3;
+let showbool=true;
 
 window.onkeydown = function(event) {
     if (event.keyCode=="192") {
-        if (showbool==1) {
+        document.querySelectorAll("div.LearnosityDistractor").forEach((el) => {el.style.opacity=0});
+        document.querySelectorAll("div.icon.--correct").forEach(el => {
+            el.style.display = "none";
+            el.parentElement.parentElement.onclick = () => {
+                el.style.display = "block";
+                el.parentElement.parentElement.classList.add("--correct");
+            }
+        });
+        document.querySelectorAll("div.icon.--incorrect").forEach(el => {
+            el.style.display = "none";
+            el.parentElement.parentElement.onclick = () => {
+                el.style.display = "block";
+                el.parentElement.parentElement.classList.add("--incorrect");
+            }
+        });
+        document.querySelectorAll("div.AccessibilityWrapper.mcq-option.--correct").forEach(el => {
+            el.classList.remove("--correct");
+        });
+        document.querySelectorAll("div.AccessibilityWrapper.mcq-option.--incorrect").forEach(el => {
+            el.classList.remove("--incorrect");
+        });
+        document.querySelectorAll("div.letter.--chosen").forEach(el => el.classList.remove("--chosen"));
+    }
+    if (event.keyCode=="16") {
+        if (showbool) {
             document.querySelectorAll("div.LearnosityDistractor").forEach((el) => {el.style.opacity=1});
-            showbool=2;
-        } else if (showbool==2) {
+            showbool=false;
+        } else if (!showbool) {
             document.querySelectorAll("div.LearnosityDistractor").forEach((el) => {el.style.opacity=0});
-            showbool=1;
-        } else {
-            showbool=1;
-            document.querySelectorAll("div.LearnosityDistractor").forEach((el) => {el.style.opacity=0});
-            document.querySelectorAll("div.icon.--correct").forEach(el => {
-                el.style.display = "none";
-                el.parentElement.parentElement.onclick = () => {
-                    el.style.display = "block";
-                    el.parentElement.parentElement.classList.add("--correct");
-                }
-            });
-            document.querySelectorAll("div.icon.--incorrect").forEach(el => {
-                el.style.display = "none";
-                el.parentElement.parentElement.onclick = () => {
-                    el.style.display = "block";
-                    el.parentElement.parentElement.classList.add("--incorrect");
-                }
-            });
-            document.querySelectorAll("div.AccessibilityWrapper.mcq-option.--correct").forEach(el => {
-                el.classList.remove("--correct");
-            });
-            document.querySelectorAll("div.AccessibilityWrapper.mcq-option.--incorrect").forEach(el => {
-                el.classList.remove("--incorrect");
-            });
-            document.querySelectorAll("div.letter.--chosen").forEach(el => el.classList.remove("--chosen"));
+            showbool=true;
         }
     }
 }
