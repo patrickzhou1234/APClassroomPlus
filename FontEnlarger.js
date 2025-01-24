@@ -12,15 +12,15 @@
 
 setInterval(() => {
     document.querySelectorAll(".stimulus_reference").forEach((el)=>{
-        el.style.fontSize="2vmin";
+        el.style.fontSize="20px";
     });
     document.querySelectorAll(".stem_paragraph").forEach((el)=>{
-        el.style.fontSize="2vmin";
+        el.style.fontSize="20px";
     });
     document.querySelectorAll(".lrn-possible-answer").forEach((el)=>{
-        el.style.fontSize="2vmin";
+        el.style.fontSize="20px";
     });
     document.querySelectorAll(".choice_paragraph").forEach((el)=>{
-        el.style.fontSize="2vmin";
+        el.style.fontSize="20px";
     });
 }, 500);
