@@ -1,33 +1,53 @@
 // ==UserScript==
-// @name         AP CLASSROOM Autocompleter
+// @name         AP Classroom Autocompleter
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
-// @author       You
+// @author       Patrick Zhou
 // @match        https://apclassroom.collegeboard.org/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=collegeboard.org
 // @grant        none
 // ==/UserScript==
 
-window.onkeydown = function(event) {
-     if (event.keyCode == "65") {
-         var answer="private int numerator;private int denominator;private double fractionToDecimal(){return (double) numerator / denominator;}";
-         var cusid_ele = document.getElementsByClassName('code_line');
-         var str="";
-         for (var i = 0; i < cusid_ele.length; ++i) {
-             var item = cusid_ele[i];
-             str+=item.innerText;
-         }
-         for (i=0;i<str.length;i++) {
-             if (str[i]==' ') {
-                 str[i]='+';
-             }
-         }
-         var btn = document.getElementsByClassName("lrn-label");
-         for (i=0;i<btn.length;i++) {
-             if (btn[i].textContent==answer) {
-                 btn[i].click();
-             }
-         }
-     }
-}
+window.onkeydown = function (event) {
+    if (event.keyCode == "192") {
+        body = JSON.parse(prompt("Enter the questions JSON here:"));
+        x = 0;
+        btnint = setInterval(() => {
+            if (body.data.apiActivity.items[x].questions[0].options[0].value == "i0") {
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i0") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[0].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i1") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[1].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i2") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[2].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i3") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[3].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i4") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[4].childNodes[0].click();
+                }
+            } else {
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i1") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[0].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i2") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[1].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i3") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[2].childNodes[0].click();
+                }
+                if (body.data.apiActivity.items[x].questions[0].validation.valid_response.value[0] == "i4") {
+                    document.querySelectorAll(".lrn_mcqgroup")[x].childNodes[3].childNodes[0].click();
+                }
+            }
+            x++;
+            if (x == body.data.apiActivity.items.length) {
+                clearInterval(btnint);
+            }
+        }, 3000);
+    }
+};
