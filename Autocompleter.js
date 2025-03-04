@@ -48,6 +48,6 @@ window.onkeydown = function (event) {
             if (x == body.data.apiActivity.items.length) {
                 clearInterval(btnint);
             }
-        }, 3000);
+        }, 500);
     }
 };
