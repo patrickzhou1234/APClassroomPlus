@@ -10,7 +10,7 @@
 // ==/UserScript==
 
 window.onkeydown = function (event) {
-    if (event.keyCode == "192") {
+    if (event.keyCode == "220") {
         body = JSON.parse(prompt("Enter the questions JSON here:"));
         x = 0;
         btnint = setInterval(() => {
