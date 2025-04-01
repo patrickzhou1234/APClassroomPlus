@@ -23,4 +23,7 @@ setInterval(() => {
     document.querySelectorAll(".choice_paragraph").forEach((el)=>{
         el.style.fontSize="20px";
     });
+    document.querySelectorAll(".lrn_sharedpassage").forEach((el)=>{
+        el.style.fontSize="20px";
+    });
 }, 500);
